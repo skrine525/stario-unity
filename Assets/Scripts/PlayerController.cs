@@ -1,17 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class PlayerController1 : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     public float speed;
     public float jumpForce;
     public bool canMove = true;
     private int inputWidthLimit1, inputWidthLimit2, inputHeightLimit;
+    [SerializeField] private Button moveLeftButton, moveRightButton;
     private SpriteRenderer spriteRenderer;
     [SerializeField] private Sprite spriteLeft, spriteRight;
     private Rigidbody2D rgbd;
-    private bool leftTouch, rightTouch = false;
+    private bool leftTouch, rightTouch = false, moveLeft = false, moveRight = false;
     private float startRightTouchY;
 
     // Start is called before the first frame update
@@ -26,6 +28,7 @@ public class PlayerController1 : MonoBehaviour
         inputWidthLimit2 = inputWidthLimit1 * 2;
         inputHeightLimit = Mathf.FloorToInt(Screen.height / 3);
 
+        GlobalData.playerController = this;
     }
 
     // Update is called once per frame
@@ -40,50 +43,36 @@ public class PlayerController1 : MonoBehaviour
                     if(touchableObject != null){
                         touchableObject.HandleSystemTouch(gameObject);
                     }
-                    else
-                        MovableInputByTouch(touch);
                 }
-                    else
-                        MovableInputByTouch(touch);
             }
-            else
-                MovableInputByTouch(touch);
+        }
+
+        if(moveLeft){
+            MoveLeft();
+        }
+        else if (moveRight){
+            MoveRight();
         }
     }
 
-    private void MovableInputByTouch(Touch touch){
-        if(canMove){
-            if(touch.position.y < inputHeightLimit){
-                if(touch.position.x < inputWidthLimit2){
-                    if(touch.phase != TouchPhase.Ended){
-                        if(touch.position.x < inputWidthLimit1){
-                            MoveLeft();
-                        }
-                        else if (touch.position.x > inputWidthLimit1 && touch.position.x < inputWidthLimit2){
-                            MoveRight();
-                        }
-                    }
-                    else if (touch.phase == TouchPhase.Ended){
-                        MoveStop();
-                    }
-                }
-                else if (touch.position.x > inputWidthLimit2){
-                    if(touch.phase == TouchPhase.Began && !rightTouch){
-                        rightTouch = true;
-                        startRightTouchY = touch.position.y;
-                    }
-                    else if(touch.phase == TouchPhase.Ended && rightTouch){
-                        rightTouch = false;
-                        if(startRightTouchY - touch.position.y >= 200){
-                            DoDown();
-                        }
-                        else{
-                            DoJump();
-                        }
-                    }
-                }
-            }
-        }
+    public void StartMovingLeft(){
+        moveLeft = true;
+        moveRight = false;
+    }
+
+    public void StopMovingLeft(){
+        moveLeft = false;
+        MoveStop();
+    }
+
+    public void StartMovingRight(){
+        moveRight = true;
+        moveLeft = false;
+    }
+
+    public void StopMovingRight(){
+        moveRight = false;
+        MoveStop();
     }
 
     private void MoveLeft(){
@@ -122,12 +111,5 @@ public class PlayerController1 : MonoBehaviour
                 hit.collider.isTrigger = true;
             }
         }
-    }
-
-    void OnGUI(){
-        float height = Screen.height - inputHeightLimit;
-        GUI.Box(new Rect(inputWidthLimit1, height, 1, Screen.height), "*");
-        GUI.Box(new Rect(inputWidthLimit2, height, 1, Screen.height), "*");
-        GUI.Box(new Rect(0, height, Screen.width, 1), "*");
     }
 }

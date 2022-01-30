@@ -9,10 +9,18 @@ public class DoorController : MonoBehaviour
     public Wire wire;
     public string nextLevel;
     private Animator animator;
+    private AudioClip fx;
+    private AudioSource audioSource;
     // Start is called before the first frame update
+
+    void Awake(){
+        fx = Resources.Load<AudioClip>("Audio/Lift");
+    }
+
     void Start()
     {
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -21,11 +29,13 @@ public class DoorController : MonoBehaviour
         if(wire.state != 0 && canTouch == false){
             canTouch = true;
             animator.Play("DoorOpening");
+            audioSource.PlayOneShot(fx);
 
         }
         else if(wire.state == 0 && canTouch == true){
             canTouch = false;
             animator.Play("DoorClosing");
+            audioSource.PlayOneShot(fx);
         }
     }
 
