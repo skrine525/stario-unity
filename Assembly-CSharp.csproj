@@ -38,14 +38,19 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Labirint.cs" />
      <Compile Include="Assets\Scripts\MainMenu.cs" />
+     <Compile Include="Assets\Scripts\GlobalData.cs" />
      <Compile Include="Assets\Scripts\Wire\WireNot.cs" />
      <Compile Include="Assets\Scripts\Switch.cs" />
+     <Compile Include="Assets\Scripts\UIInput.cs" />
+     <Compile Include="Assets\Scripts\Egg.cs" />
      <Compile Include="Assets\Levels\DoodleJump\Scripts\InitL2.cs" />
      <Compile Include="Assets\Scripts\Wire\Wire.cs" />
      <Compile Include="Assets\Scripts\Wire\WireOr.cs" />
      <Compile Include="Assets\Scripts\Wire\WireAnd.cs" />
+     <Compile Include="Assets\Scripts\Level4\LabirintTrigger.cs" />
      <Compile Include="Assets\Scripts\Level4\LabirintObjectController.cs" />
      <Compile Include="Assets\Scripts\CardChecker.cs" />
+     <Compile Include="Assets\Scripts\Level5\LabGeneratorL5.cs" />
      <Compile Include="Assets\Scripts\Wire\WireImpl.cs" />
      <Compile Include="Assets\Levels\DoodleJump\Scripts\PlatformL2.cs" />
      <Compile Include="Assets\Scripts\DoorController.cs" />
@@ -53,11 +58,9 @@
      <Compile Include="Assets\Scripts\PlayerController.cs" />
      <Compile Include="Assets\Scripts\TouchableObject.cs" />
      <Compile Include="Assets\Scripts\CameraController.cs" />
-     <Compile Include="Assets\Scripts\CardCheckerSwitch.cs" />
      <Compile Include="Assets\Scripts\Level5\DoorFunL5.cs" />
-     <Compile Include="Assets\Scripts\Level5\LabGeneratorL5.cs" />
-     <Compile Include="Assets\Scripts\GlobalData.cs" />
-     <Compile Include="Assets\Scripts\UIInput.cs" />
+     <Compile Include="Assets\Scripts\CardCheckerSwitch.cs" />
+     <Compile Include="Assets\Scripts\FinalScene\UpCameraF.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />

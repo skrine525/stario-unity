@@ -16,7 +16,7 @@ public class CardChecker : MonoBehaviour
     }
     void Start()
     {
-        
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame

@@ -23,6 +23,6 @@ public class LabirintObjectController : MonoBehaviour
     }
 
     void OnCollisionEnter2D(Collision2D collision){
-        transform.position = spawn.transform.position;
+        transform.position = new Vector3(spawn.transform.position.x, spawn.transform.position.y, transform.position.z);
     }
 }
