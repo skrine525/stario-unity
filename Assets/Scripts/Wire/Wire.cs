@@ -15,7 +15,7 @@ public class Wire : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = disabledSprite;
-        ChangeSpite();
+        ChangeSprite();
         lastState = state;
     }
 
@@ -27,11 +27,11 @@ public class Wire : MonoBehaviour
         
         if(lastState != state){
             lastState = state;
-            ChangeSpite();
+            ChangeSprite();
         }
     }
 
-    private void ChangeSpite(){
+    private void ChangeSprite(){
         if(state > 0)
             spriteRenderer.sprite = enabledSprite;
         else
